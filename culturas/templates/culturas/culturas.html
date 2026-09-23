@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Culturas Cadastradas</h1>
+  {% if culturas %}
+  {% for cultura in culturas %}
+  <ul>
+    <li>cultura.nome</li>
+  </ul>
+  {% endfor %}
+  {% else %}
+  <p>Não há culturas para exibir</p>
+  {% endif %}
+{% endblock %}
