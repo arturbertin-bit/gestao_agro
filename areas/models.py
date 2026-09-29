@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Area(models.Model):
     nome = models.CharField(max_length=100)
@@ -9,7 +10,7 @@ class Area(models.Model):
         return self.nome
 
     class Meta:
-        db_table = 'areas'
-        verbose_name = 'area'
-        verbose_name_plural = 'areas'
-        ordering = ['nome']
+        db_table = "areas"
+        verbose_name = "area"
+        verbose_name_plural = "areas"
+        ordering = ["nome"]

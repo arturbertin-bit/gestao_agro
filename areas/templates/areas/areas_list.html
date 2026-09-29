@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="areas-page">
+
+    <!-- Cabeçalho -->
+    <div class="page-header">
+        <div>
+            <p class="page-subtitle">GESTÃO AGRÍCOLA</p>
+            <h1>Áreas da propriedade</h1>
+            <p class="page-description">
+                Gerencie as áreas disponíveis para suas plantações.
+            </p>
+        </div>
+
+        <a href="{% url 'areas:create_area' %}" class="btn-primary">
+            + Cadastrar área
+        </a>
+
+        <a href="{% url 'core:index' %}" class="btn-secondary">
+            ← Voltar
+        </a>
+    </div>
+
+
+
+
+    <!-- Resumo -->
+    <div class="summary-card">
+        <div class="summary-icon">
+            🌱
+        </div>
+
+        <div>
+            <span class="summary-label">Áreas cadastradas</span>
+            <strong class="summary-number">{{ areas|length }}</strong>
+        </div>
+    </div>
+
+
+    <!-- Conteúdo -->
+    {% if areas %}
+
+        <div class="section-header">
+            <h2>Suas áreas</h2>
+            <span>{{ areas|length }} cadastrada{{ areas|length|pluralize }}</span>
+        </div>
+
+        <div class="areas-grid">
+
+            {% for area in areas %}
+
+                <div class="area-card">
+
+                    <div class="area-card-header">
+                        <div class="area-icon">
+                            🌾
+                        </div>
+
+                        <div>
+                            <h3>{{ area.nome }}</h3>
+                            <span>Área agrícola</span>
+                        </div>
+                    </div>
+
+                    <div class="area-info">
+
+                        <div class="info-item">
+                            <span class="info-label">Tamanho</span>
+                            <strong>{{ area.tamanho }} ha</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="area-actions">
+                        <a href="#" class="btn-secondary">
+                            Ver detalhes
+                        </a>
+
+                        <a href="#" class="btn-link">
+                            Editar
+                        </a>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🌱
+            </div>
+
+            <h2>Nenhuma área cadastrada</h2>
+
+            <p>
+                Cadastre sua primeira área para começar a organizar
+                sua propriedade rural.
+            </p>
+
+            <a href="{% url 'areas:create_area' %}" class="btn-primary">
+                + Cadastrar primeira área
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

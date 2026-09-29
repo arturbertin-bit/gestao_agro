@@ -1,9 +1,10 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
-from areas.views import areas_list_view
+from . import views
 
 urlpatterns = [
-    path("/areas", areas_list_view, name="areas_list"),
-
+    path("", views.AreasList.as_view(), name="areas_list"),
+    path("create/", views.create_area_view, name="create_area")
 ]
+
+app_name = "areas"

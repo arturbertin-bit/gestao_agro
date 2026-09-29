@@ -1,6 +1,8 @@
 from django.db import models
 
 from areas.models import Area
+
+
 # Create your models here.
 class Cultura(models.Model):
     nome = models.CharField(max_length=100)
@@ -11,6 +13,6 @@ class Cultura(models.Model):
         return self.nome
 
     class Meta:
-        verbose_name = 'area'
-        verbose_name_plural = 'areas'
-        ordering = ['nome']
+        verbose_name = "area"
+        verbose_name_plural = "areas"
+        ordering = ["nome"]

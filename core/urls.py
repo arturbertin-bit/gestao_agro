@@ -1,9 +1,10 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
+from areas.urls import app_name
+from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", )
-    path("culturas/", include("culturas.urls")),
+    path("", views.index_view, name="index")
 ]
+
+app_name = "core"

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<main>
+  <section class="destaque">
+    <div class="container">
+      <h1>Sua propriedade rural, organizada em um só lugar</h1>
+      <p>Controle áreas, culturas, estoque e finanças sem planilhas espalhadas.</p>
+      <a href="#" class="botao">Cadastrar propriedade</a>
+    </div>
+  </section>
+
+  <section class="modulos container">
+    <h2>O que você quer gerenciar?</h2>
+
+    <div class="grade">
+      <a href="{% url 'areas:areas_list' %}" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">🗺️</span>
+        <span class="modulo-texto">
+          <strong>Áreas</strong>
+          <span>Talhões e glebas da propriedade.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">🌱</span>
+        <span class="modulo-texto">
+          <strong>Culturas</strong>
+          <span>O que está plantado e em qual safra.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">🌾</span>
+        <span class="modulo-texto">
+          <strong>Produtos</strong>
+          <span>Colheitas e o que a propriedade produz.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">📦</span>
+        <span class="modulo-texto">
+          <strong>Estoque</strong>
+          <span>Insumos, sementes e ferramentas.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">🚜</span>
+        <span class="modulo-texto">
+          <strong>Serviços</strong>
+          <span>Plantio, aplicações e trabalhos no campo.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">📄</span>
+        <span class="modulo-texto">
+          <strong>Documentos</strong>
+          <span>Notas, contratos e licenças.</span>
+        </span>
+      </a>
+
+      <a href="#" class="modulo">
+        <span class="modulo-icone" aria-hidden="true">💰</span>
+        <span class="modulo-texto">
+          <strong>Financeiro</strong>
+          <span>Entradas, saídas e custos por safra.</span>
+        </span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <p>AgroGestão &copy; 2026 — projeto em desenvolvimento</p>
+  </div>
+</footer>
+{% endblock %}
