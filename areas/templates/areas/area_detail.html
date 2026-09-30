@@ -1,7 +1,133 @@
-{% extends 'base.html' %}}
-{% block content%}
-<h1>Area {{ Nome da area }}</h1>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="detail-page">
+
+    <!-- Cabeçalho -->
+    <div class="detail-header">
+
+        <div>
+            <a href="{% url 'areas:areas_list' %}" class="back-link">
+                ← Voltar para áreas
+            </a>
+
+            <h1>{{ area.nome }}</h1>
+
+            <p>
+                {{ area.tamanho }} hectares
+            </p>
+        </div>
+
+        <div class="detail-actions">
+            <a href="{% url 'areas:area_update' area.pk %}" class="btn-secondary">
+                Editar área
+            </a>
+        </div>
+
+    </div>
 
 
+    <!-- Informações da área -->
+    <section class="detail-section">
+
+        <div class="section-header">
+            <div>
+                <span class="page-label">INFORMAÇÕES</span>
+                <h2>Dados da área</h2>
+            </div>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="info-label">Nome</span>
+                <strong>{{ area.nome }}</strong>
+            </div>
+
+            <div class="info-card">
+                <span class="info-label">Tamanho</span>
+                <strong>{{ area.tamanho }} ha</strong>
+            </div>
+
+            <div class="info-card">
+                <span class="info-label">Culturas</span>
+                <strong>{{ area.culturas.count }}</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Culturas -->
+    <section class="detail-section">
+
+        <div class="section-header">
+
+            <div>
+                <span class="page-label">PRODUÇÃO</span>
+                <h2>Culturas plantadas</h2>
+            </div>
+
+            <a href="#" class="btn-primary">
+                + Plantar cultura
+            </a>
+
+        </div>
+
+
+        {% if area.culturas.all %}
+
+            <div class="culturas-grid">
+
+                {% for cultura in area.culturas.all %}
+
+                    <div class="cultura-card">
+
+                        <div class="cultura-card-header">
+                            <h3>{{ cultura.nome }}</h3>
+                        </div>
+
+                        <div class="cultura-info">
+
+                            <div>
+                                <span>Data de plantio</span>
+                                <strong>
+                                    {{ cultura.data_plantio|date:"d/m/Y" }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <a href="#" class="btn-secondary">
+                            Ver cultura
+                        </a>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="empty-state">
+                        <h3>Nenhuma cultura plantada</h3>
+
+                        <p>
+                            Esta área ainda não possui culturas cadastradas.
+                        </p>
+
+                        <a href="#" class="btn-primary">
+                            Plantar primeira cultura
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</div>
 
 {% endblock %}

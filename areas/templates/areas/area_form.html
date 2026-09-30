@@ -4,89 +4,100 @@
 
 <div class="form-page">
 
-    <div class="form-header">
-        <div>
-            <p class="page-subtitle">GESTÃO AGRÍCOLA</p>
-            <h1>Cadastrar área</h1>
-            <p class="page-description">
-                Adicione uma nova área à propriedade.
-            </p>
-        </div>
+  <div class="form-header">
 
-        <a href="{% url 'areas:areas_list' %}" class="btn-secondary">
-            ← Voltar
-        </a>
+    <div>
+      <span class="page-label">GESTÃO AGRÍCOLA</span>
+
+      <h1>Cadastrar área</h1>
+
+      <p>
+        Adicione uma nova área à sua propriedade.
+      </p>
     </div>
 
+  </div>
 
-    <div class="form-card">
 
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
+  <div class="form-card">
+
+    <form method="post">
+
+      {% csrf_token %}
+
+
+      <!-- Nome -->
+
+      <div class="form-group">
+
+        <label for="{{ form.nome.id_for_label }}">
+          Nome da área
+        </label>
+
+        {{ form.nome }}
+
+        {% if form.nome.errors %}
+        <div class="field-error">
+          {{ form.nome.errors }}
+        </div>
         {% endif %}
 
+        <small>
+          Exemplo: Área Norte, Área 01, Talhão A...
+        </small>
 
-        <form action="" method="post">
-
-            {% csrf_token %}
-
-            <div class="form-group">
-                <label for="nome">Nome da área</label>
-
-                <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    placeholder="Ex: Área Norte"
-                    required
-                >
-
-                <small>
-                    Dê um nome para identificar facilmente esta área.
-                </small>
-            </div>
+      </div>
 
 
-            <div class="form-group">
-                <label for="tamanho">Tamanho</label>
+      <!-- Tamanho -->
 
-                <div class="input-with-unit">
-                    <input
-                        type="number"
-                        id="tamanho"
-                        name="tamanho"
-                        placeholder="Ex: 15"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
+      <div class="form-group">
 
-                    <span>ha</span>
-                </div>
+        <label for="{{ form.tamanho.id_for_label }}">
+          Tamanho da área
+        </label>
 
-                <small>
-                    Informe o tamanho da área em hectares.
-                </small>
-            </div>
+        <div class="input-unit">
+
+          {{ form.tamanho }}
+
+          <span>hectares</span>
+
+        </div>
+
+        {% if form.tamanho.errors %}
+        <div class="field-error">
+          {{ form.tamanho.errors }}
+        </div>
+        {% endif %}
+
+        <small>
+          Informe o tamanho da área em hectares.
+        </small>
+
+      </div>
 
 
-            <div class="form-actions">
+      <!-- Botões -->
 
-                <a href="{% url 'areas:areas_list' %}" class="btn-secondary">
-                    Cancelar
-                </a>
+      <div class="form-actions">
 
-                <button type="submit" class="btn-primary">
-                    Cadastrar área
-                </button>
+        <a
+            href="{% url 'areas:areas_list' %}"
+            class="btn-secondary"
+        >
+          Cancelar
+        </a>
 
-            </div>
+        <button type="submit" class="btn-primary">
+          Cadastrar área
+        </button>
 
-        </form>
+      </div>
 
-    </div>
+    </form>
+
+  </div>
 
 </div>
 

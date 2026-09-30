@@ -74,11 +74,11 @@
                     </div>
 
                     <div class="area-actions">
-                        <a href="#" class="btn-secondary">
+                        <a href="{% url 'areas:area_detail' area.pk %}" class="btn-secondary">
                             Ver detalhes
                         </a>
 
-                        <a href="#" class="btn-link">
+                        <a href="{% url 'areas:area_update' area.pk %}" class="btn-link">
                             Editar
                         </a>
                     </div>

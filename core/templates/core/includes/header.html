@@ -1,17 +1,38 @@
 <header class="topo">
-  <div class="container">
-    <a href="{% url 'core:index' %}" class="logo">AgroGestão</a>
-  </div>
-  <nav class="menu" aria-label="Menu principal">
-    <div class="container menu-lista">
-      <a href="{% url 'core:index' %}" class="ativo">Início</a>
-      <a href="{% url 'areas:areas_list' %}">Áreas</a>
-      <a href="#">Culturas</a>
-      <a href="#">Produtos</a>
-      <a href="#">Estoque</a>
-      <a href="#">Serviços</a>
-      <a href="#">Documentos</a>
-      <a href="#">Financeiro</a>
+
+    <div class="container">
+        <a href="{% url 'core:index' %}" class="logo">
+            AgroGestão
+        </a>
     </div>
-  </nav>
+
+    <nav class="menu" aria-label="Menu principal">
+
+        <div class="container menu-lista">
+
+            <a
+                href="{% url 'core:index' %}"
+                class="{% if request.resolver_match.namespace == 'core' %}ativo{% endif %}"
+            >
+                Início
+            </a>
+
+            <a
+                href="{% url 'areas:areas_list' %}"
+                class="{% if request.resolver_match.namespace == 'areas' %}ativo{% endif %}"
+            >
+                Áreas
+            </a>
+
+            <a href="#">Culturas</a>
+            <a href="#">Produtos</a>
+            <a href="#">Estoque</a>
+            <a href="#">Serviços</a>
+            <a href="#">Documentos</a>
+            <a href="#">Financeiro</a>
+
+        </div>
+
+    </nav>
+
 </header>

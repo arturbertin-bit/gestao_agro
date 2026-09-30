@@ -1,34 +1,52 @@
-from difflib import context_diff
-
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import ListView
-from django.urls import reverse
+from django.views import generic
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import UpdateView
 
+from areas.forms import AreasForm
 from areas.models import Area
 
 
 # Create your views here.
-class AreasList(ListView):
+class AreasList(generic.ListView):
     model = Area
     context_object_name = "areas"
     template_name = "areas/areas_list.html"
 
 
-def create_area_view(request: HttpRequest) -> HttpResponse:
-    if request.method == "GET":
-        return render(request, "areas/area_form.html")
+class AreaDetailView(generic.DetailView):
+    model = Area
+    context_object_name = "area"
+    template_name = "areas/area_detail.html"
+
+
+def create_area(request: HttpRequest) -> HttpResponse:
 
     if request.method == "POST":
-        nome = request.POST.get("nome")
-        tamanho = request.POST.get("tamanho")
+        form = AreasForm(request.POST)
 
-        if nome and tamanho:
-            Area.objects.create(nome=nome, tamanho=tamanho)
-            return HttpResponseRedirect(reverse("areas:areas_list"))
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(
+                reverse("areas:areas_list")
+            )
+    else:
+        form = AreasForm()
 
-        context = {
-            "error": "Preencha todos os campos"
-        }
+    return render(
+            request,
+            "areas/area_form.html",
+            {"form": form}
+    )
 
-        return render(request, "areas/area_form.html")
+class AreaUpdateView(UpdateView):
+    model = Area
+    form_class = AreasForm
+    template_name = "areas/area_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "areas:area_detail",
+            kwargs={"pk": self.object.pk}
+        )
